@@ -1,0 +1,32 @@
+function Greater.max 3
+	push argument 0
+	push argument 1
+	gt
+	push argument 0
+	push argument 2
+	gt
+	and
+	if-goto GREATER_FIRST
+
+	push argument 1
+	push argument 0
+	gt
+	push argument 1
+	push argument 2
+	gt
+	and
+	if-goto GREATER_SECOND
+
+	goto GREATER_THIRD
+
+label GREATER_FIRST
+	push argument 0
+	return
+
+label GREATER_SECOND
+	push argument 1
+	return
+
+label GREATER_THIRD
+	push argument 2
+	return

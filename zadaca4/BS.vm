@@ -1,0 +1,67 @@
+function BS.search 3
+	push constant 0
+	pop local 0
+
+	push argument 1
+	push constant 1
+	sub
+	pop local 1
+
+label SEARCH_START
+	push local 0
+	push local 1
+	gt
+	if-goto SEARCH_END
+
+	push local 0
+	push local 1
+	push local 0
+	sub
+	push constant 2
+	call Div.div 2
+	add
+	pop local 2
+
+	push local 2
+	push argument 0
+	add
+
+	pop pointer 1
+	push that 0
+	push argument 2
+	eq
+	if-goto SEARCH_FOUND
+
+	push local 2
+	push argument 0
+	add
+
+	pop pointer 1
+	push that 0
+	push argument 2
+	gt
+
+	if-goto MOVE_RIGHT
+	push local 2
+	push constant 1
+	add
+	pop local 0
+
+	goto SEARCH_START
+
+label MOVE_RIGHT
+	push local 2
+	push constant 1
+	sub
+	pop local 1
+
+	goto SEARCH_START
+
+label SEARCH_END
+	push constant 1
+	neg
+	return
+
+label SEARCH_FOUND
+	push local 2
+	return

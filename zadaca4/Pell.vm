@@ -1,0 +1,31 @@
+function Pell.pell 2
+	push argument 0
+	push constant 2
+	gt
+	if-goto nr
+
+	push argument 0
+	return
+
+label nr
+	push argument 0
+	push constant 1
+	sub
+
+	call Pell.pell 1
+
+	pop local 0
+	push local 0
+	push local 0
+	add
+	pop local 1
+
+	push argument 0
+	push constant 2
+	sub
+
+	call Pell.pell 1
+	push local 1
+	add
+
+	return
